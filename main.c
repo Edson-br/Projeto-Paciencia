@@ -19,6 +19,15 @@ typedef struct pilha {
     Carta *topo;
 } Pilha;
 
+void colocaDado(int n, int v, Pilha *p) {
+    Carta *novoDado;
+    novoDado = (Carta *)malloc(sizeof(Carta));
+    novoDado->c_Naipe = n;
+    novoDado->c_Valor = v;
+    novoDado->prox = p->topo;
+    p->topo = novoDado;
+}
+
 Pilha *inicializaPilha() {
     Pilha *p;
     p = (Pilha *)malloc(sizeof(Pilha));
@@ -29,15 +38,6 @@ Pilha *inicializaPilha() {
         }
     }
     return p;
-}
-
-void colocaDado(int n, int v, Pilha *p) {
-    Carta *novoDado;
-    novoDado = (Carta *)malloc(sizeof(Carta));
-    novoDado->c_Naipe = n;
-    novoDado->c_Valor = v;
-    novoDado->prox = p->topo;
-    p->topo = novoDado;
 }
 
 void imprimePilha(Pilha *p) {
@@ -79,7 +79,7 @@ void imprimePilha(Pilha *p) {
         printf("\n");
         iterador = iterador->prox;
     }
-	printf("\n");
+	printf("  ");
 }
 
 int main()
