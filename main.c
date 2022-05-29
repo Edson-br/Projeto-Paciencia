@@ -23,6 +23,11 @@ Pilha *inicializaPilha() {
     Pilha *p;
     p = (Pilha *)malloc(sizeof(Pilha));
 	p->topo = NULL;
+	for(int i=0;i<13;i++){
+        for(int j=0;j<4;j++){
+            colocaDado(j,i,p);
+        }
+    }
     return p;
 }
 
@@ -80,10 +85,5 @@ void imprimePilha(Pilha *p) {
 int main()
 {
     Pilha *p = inicializaPilha();
-    for(int i=0;i<13;i++){
-        for(int j=0;j<4;j++){
-            colocaDado(j,i,p);
-        }
-    }
     imprimePilha(p);
 }
