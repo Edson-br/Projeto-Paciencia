@@ -67,73 +67,27 @@ void imprimeFila(Fila *f)
     printf("  ");
 }
 
-// aqui estava o codigo para aplicao em pilha, mas o inicializaPilha esta pra fazer um baralho novo
-/*typedef struct pilha {
-    Carta *topo;
-} Pilha;
-
-void colocaDado(int n, int v, Pilha *p) {
-    Carta *novoDado;
-    novoDado = (Carta *)malloc(sizeof(Carta));
-    novoDado->c_Naipe = n;
-    novoDado->c_Valor = v;
-    novoDado->prox = p->topo;
-    p->topo = novoDado;
-}
-
-Pilha *inicializaPilha() {
-    Pilha *p;
-    p = (Pilha *)malloc(sizeof(Pilha));
-    p->topo = NULL;
-    for(int i=0;i<13;i++){
-        for(int j=0;j<4;j++){
-            colocaDado(j,i,p);
+int trasferencia(Pilha *inicial, Pilha *final, int n){//funcao que recebe a pilha incial e fina e quantas caratas serao transferidas
+    Pilha *aux = inicializaPilha();
+    
+    for(int i=0;i<n;i++){//passa o numero de cartas para a aux
+        colocaDadoPilha(inicial->topo->c_Naipe,inicial->topo->c_Valor, aux);
+        retiraDadoPilha(inicial);
+    }//aqui eh comparado se o valor do topo da aux eh 1 maior que a aux e se os naipes sao de cores diferentes
+    if((aux->topo->c_Valor==final->topo->c_Valor - 1) && ((aux->topo->c_Naipe%2==0 && final->topo->c_Naipe%2==1)||(aux->topo->c_Naipe%2==1 && final->topo->c_Naipe%2==0))){
+        while (aux->topo!=NULL){
+            colocaDadoPilha(aux->topo->c_Naipe,aux->topo->c_Valor, final);
+            retiraDadoPilha(aux);
         }
+        return 0;
+    }else{//se nao tiver o naipe de outra cor e um valor estar uma acima ele so coloca novamente na incial e retorna 1
+        while (aux->topo!=NULL){
+            colocaDadoPilha(aux->topo->c_Naipe,aux->topo->c_Valor, inicial);
+            retiraDadoPilha(aux);
+        }
+        return 1;
     }
-    return p;
 }
-
-void imprimePilha(Pilha *p) {
-    Carta *iterador;
-    iterador = p->topo;
-    while (iterador != NULL) {
-        switch(iterador->c_Naipe) {
-            case Copas:
-              printf("♥");
-              break;
-            case Ouros:
-              printf("♦");
-              break;
-            case Paus:
-              printf("♣");
-              break;
-            case Espadas:
-              printf("♠");
-              break;
-        }
-        if(iterador->c_Valor<Dama){
-            printf("%i",iterador->c_Valor+2);
-        }else{
-            switch(iterador->c_Valor) {
-                case Valete:
-                    printf("J");
-                    break;
-                case Dama:
-                    printf("Q");
-                    break;
-                case Rei:
-                    printf("K");
-                    break;
-                case As:
-                    printf("A");
-                    break;
-            }
-        }
-        printf("\n");
-        iterador = iterador->prox;
-    }
-    printf("  ");
-}*/
 
 int main()
 {
