@@ -38,12 +38,10 @@ Fila *cortaFila(Fila *f)
   {
     // Randomiza um valor de cartas para cortar da fila
     int valorCorta = randomize(0, 40);
-    printf("%d", valorCorta);
     for (int i = 0; i < valorCorta; i++)
     {
       // Remove dado da fila e coloca ele na pilha
       Carta *retirada = retiraDaFila(f);
-      printf("%d", procNipe(retirada));
       colocaDadoPilha(retirada->c_Naipe, retirada->c_Valor, p);
     }
     // Coloca novamente o valor na fila
