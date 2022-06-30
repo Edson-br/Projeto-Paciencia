@@ -35,15 +35,3 @@ Carta *retiraDadoPilha(Pilha *p)
     return saida;
   }
 }
-
-void imprimePilha(Pilha *p)
-{
-  Carta *iterador;
-  iterador = p->topo;
-  while (iterador != NULL)
-  {
-    printf("%i - %i", iterador->c_Naipe, iterador->c_Valor);
-    iterador = iterador->prox;
-  }
-  printf("\n");
-}
